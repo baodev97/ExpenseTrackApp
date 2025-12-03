@@ -26,7 +26,9 @@ export default function App() {
       <StatusBar barStyle={"dark-content"}/>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='ExpensesOverView'>
-          <Stack.Screen name="ExpensesOverView" component={ExpensesOverview}/>
+          <Stack.Screen name="ExpensesOverView" component={ExpensesOverview} options={{
+            headerShown:false
+          }}/>
           <Stack.Screen name="ManageExpense" component={ManageExpenses}/>
         </Stack.Navigator>
       </NavigationContainer>

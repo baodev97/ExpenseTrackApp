@@ -6,4 +6,5 @@
     - RecentExpenses
     - ManageExpenses  (add expenses and update expenses)
     - install react navigation
- 
+- Adding Navigation & Configuring Navigation
+- Adding Global Colors & Editing Navigation Configuration
