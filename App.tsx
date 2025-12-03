@@ -1,3 +1,4 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,7 +20,12 @@ function ExpensesOverview(){
       tabBarStyle:{backgroundColor:GlobalStyles.colors.primary500},
       tabBarActiveTintColor:GlobalStyles.colors.accent500
     }}>
-      <BottomTabs.Screen name='RecentExpenses' component={RecentExpenses}/>
+      <BottomTabs.Screen name='RecentExpenses' component={RecentExpenses} options={{
+        title:'Recent Expenses',
+        tabBarLabel:'Recent',
+        tabBarIcon:({size,color})=>
+          <Ionicons  name="hourglass" size={size} color={color}/>
+      }}/>
       <BottomTabs.Screen name='AllExpenses' component={AllExpenses}/>
     </BottomTabs.Navigator>
   )
