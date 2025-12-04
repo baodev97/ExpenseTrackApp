@@ -1,13 +1,10 @@
 import { GlobalStyles } from "@/constants/styles";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Expense } from "./ExpensesOutput";
 
-type ExpenseItemProp = {
-    description:string,
-    amount:number,
-    date:Date
-}
+type ExpenseItemProp = Expense
 
-function ExpenseItem({description,date,amount}:ExpenseItemProp){
+function ExpenseItem({description,date,amount,id}:ExpenseItemProp){
     return (
         <Pressable>
             <View style={styles.expenseItem}>

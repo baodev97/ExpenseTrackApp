@@ -7,7 +7,7 @@ type ExpensesListProp = {
 };
 
 function renderExpenseItem(item: Expense){
-    return <ExpenseItem description={item.description} date={item.date} amount={item.amount} />
+    return <ExpenseItem {...item} />
 }
 
 function ExpensesList({ expenses }: ExpensesListProp) {
