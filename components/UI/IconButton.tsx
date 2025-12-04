@@ -10,7 +10,7 @@ type IconButtonProp = {
 
 function IconButton({icon,color,size,onPress}:IconButtonProp){
     return (
-        <Pressable style={({pressed})=> pressed ? styles.pressed :null }>
+        <Pressable style={({pressed})=> pressed  && styles.pressed } onPress={onPress}>
             <View style={styles.buttonContainer}>
                 <Ionicons name={icon} size={size} color={color}/>
             </View>
