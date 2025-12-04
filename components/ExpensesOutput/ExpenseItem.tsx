@@ -1,4 +1,5 @@
 import { GlobalStyles } from "@/constants/styles";
+import { getFormattedDate } from "@/util/date";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Expense } from "./ExpensesOutput";
 
@@ -10,7 +11,7 @@ function ExpenseItem({description,date,amount,id}:ExpenseItemProp){
             <View style={styles.expenseItem}>
                 <View >
                     <Text style={[styles.textBase,styles.description]}>{description}</Text>
-                    <Text style={styles.textBase}>{date.toString()}</Text>
+                    <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
                 </View>
                 <View style={styles.amountContainer}>
                     <Text style={styles.amount}>{amount}</Text>
