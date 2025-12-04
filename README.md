@@ -12,3 +12,13 @@
 - Continuing Work on the Expense-related Components
     - custom Expenses Summary
     - custom Expenses List
+- Adding Dummy Expense Data
+- Outputting a List of Expenses
+- Improving App Layout & styling
+- Working on Expense List Items
+- Formatting Dates
+- Adding a Header Button & Making Expense Items Tappble
+- Navigation Programmatically Between Screens
+- Styling The Expense Manament Screens
+- Supporting Different Editing Modes & Using Route Parameters
+- Adding a "Delete" Button
