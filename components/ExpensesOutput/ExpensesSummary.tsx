@@ -1,12 +1,13 @@
 import { Text, View } from "react-native";
+import { Expense, Expenses } from "./ExpensesOutput";
 type ExpensesSummaryProp = {
     priodName:string,
-    expenses:any
+    expenses:Expenses
 }
 
 function ExpensesSummary ({priodName, expenses}:ExpensesSummaryProp){
-    const expensesSum = expenses.reduce((sum:number,expense:number)=>{
-        return sum + expenses.amount
+    const expensesSum = expenses.reduce((sum:number,expense:Expense)=>{
+        return sum + expense.amount
     },0)
 
     return (
