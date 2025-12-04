@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StatusBar } from "react-native";
+import IconButton from './components/UI/IconButton';
 import { GlobalStyles } from './constants/styles';
 import AllExpenses from "./screens/AllExpenses";
 import ManageExpenses from './screens/ManageExpense';
@@ -18,7 +19,8 @@ function ExpensesOverview(){
       headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
       headerTintColor:'white',
       tabBarStyle:{backgroundColor:GlobalStyles.colors.primary500},
-      tabBarActiveTintColor:GlobalStyles.colors.accent500
+      tabBarActiveTintColor:GlobalStyles.colors.accent500,
+      headerRight:({tintColor})=> <IconButton icon='add' size={24} color={tintColor} onPress={()=>{}}/>
     }}>
       <BottomTabs.Screen name='RecentExpenses' component={RecentExpenses} options={{
         title:'Recent Expenses',
