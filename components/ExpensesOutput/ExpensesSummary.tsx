@@ -1,10 +1,18 @@
 import { Text, View } from "react-native";
+type ExpensesSummaryProp = {
+    priodName:string,
+    expenses:any
+}
 
-function ExpensesSummary (){
+function ExpensesSummary ({priodName, expenses}:ExpensesSummaryProp){
+    const expensesSum = expenses.reduce((sum:number,expense:number)=>{
+        return sum + expenses.amount
+    },0)
+
     return (
         <View>
-            <Text>Last 7 days</Text>
-            <Text>$168</Text>
+            <Text>{priodName}</Text>
+            <Text>${expensesSum.toFixed(2)}</Text>
         </View>
     )
 }

@@ -9,3 +9,6 @@
 - Adding Navigation & Configuring Navigation
 - Adding Global Colors & Editing Navigation Configuration
 - Creating Key App Components to display Expenses
+- Continuing Work on the Expense-related Components
+    - custom Expenses Summary
+    - custom Expenses List

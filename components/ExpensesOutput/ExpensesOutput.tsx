@@ -3,13 +3,14 @@ import ExpensesList from "./ExpensesList";
 import ExpensesSummary from "./ExpensesSummary";
 
 type ExpensesOutputProp = {
-    expenses: any
+    expenses: any,
+    expensePeriod:string
 }
 
-function ExpensesOutput ({expenses}:ExpensesOutputProp){
+function ExpensesOutput ({expenses,expensePeriod}:ExpensesOutputProp){
     return (
         <View>
-            <ExpensesSummary/>
+            <ExpensesSummary priodName={expensePeriod} expenses={expenses}/>
             <ExpensesList/>
         </View>
     )
