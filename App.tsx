@@ -20,7 +20,7 @@ export type BottomTabsParamList = {
 
 export type RootStackParamList = {
   ExpensesOverview: NavigatorScreenParams<BottomTabsParamList>;
-  ManageExpense: undefined;
+  ManageExpense: {expenseId:string}|undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

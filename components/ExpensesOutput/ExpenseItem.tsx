@@ -13,7 +13,7 @@ function ExpenseItem({description,date,amount,id}:ExpenseItemProp){
     const navigation = useNavigation<ExpenseItemNavigationProp>();
 
     function expensePressHandler(){
-        navigation.navigate("ManageExpense")
+        navigation.navigate("ManageExpense",{expenseId:id})
     }
 
     return (
