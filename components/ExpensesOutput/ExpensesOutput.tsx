@@ -21,7 +21,7 @@ function ExpensesOutput ({expenses,expensePeriod}:ExpensesOutputProp){
     return (
         <View>
             <ExpensesSummary priodName={expensePeriod} expenses={DUMMY_EXPENSES}/>
-            <ExpensesList/>
+            <ExpensesList expenses={DUMMY_EXPENSES}/>
         </View>
     )
 }
