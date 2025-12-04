@@ -40,7 +40,7 @@ function ExpensesOverview(){
 export default function App() {
   return (
     <>
-      <StatusBar barStyle={"dark-content"}/>
+      <StatusBar barStyle={"light-content"}/>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='ExpensesOverView'>
           <Stack.Screen name="ExpensesOverView" component={ExpensesOverview} options={{

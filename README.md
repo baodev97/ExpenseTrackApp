@@ -8,3 +8,4 @@
     - install react navigation
 - Adding Navigation & Configuring Navigation
 - Adding Global Colors & Editing Navigation Configuration
+- Creating Key App Components to display Expenses
