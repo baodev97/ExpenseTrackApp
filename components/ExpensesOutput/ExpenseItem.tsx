@@ -6,8 +6,13 @@ import { Expense } from "./ExpensesOutput";
 type ExpenseItemProp = Expense
 
 function ExpenseItem({description,date,amount,id}:ExpenseItemProp){
+
+    function expensePressHandler(){
+
+    }
+
     return (
-        <Pressable>
+        <Pressable style={({pressed})=> pressed && styles.pressed} onPress={expensePressHandler}>
             <View style={styles.expenseItem}>
                 <View >
                     <Text style={[styles.textBase,styles.description]}>{description}</Text>
@@ -55,5 +60,8 @@ const styles = StyleSheet.create({
     amount:{
         color:GlobalStyles.colors.primary500,
         fontWeight:'bold'
+    },
+    pressed:{
+        opacity:0.75
     }
 })
