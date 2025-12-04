@@ -10,7 +10,13 @@ import AllExpenses from "./screens/AllExpenses";
 import ManageExpenses from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  ExpensesOverView: undefined;
+  ManageExpense: undefined
+};
+
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview(){
