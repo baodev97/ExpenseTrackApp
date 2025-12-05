@@ -1,5 +1,7 @@
 import { Expense } from "@/components/ExpensesOutput/ExpensesOutput";
+import { DUMMY_EXPENSES } from "@/FakeData/Dummy_expenses";
 import { createContext, ReactNode, useReducer } from "react";
+
 
 type updateExpense = {
   description: string;
@@ -44,7 +46,7 @@ export const ExpensesContext = createContext<ExpensesContextType>({
   updateExpense: ({ id, expenseData }) => {},
 });
 
-const initialState: state = [];
+const initialState: state = DUMMY_EXPENSES;
 
 function expensesReducer(state: state, action: Action) {
   switch (action.type) {
