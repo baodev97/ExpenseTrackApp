@@ -22,3 +22,8 @@
 - Styling The Expense Manament Screens
 - Supporting Different Editing Modes & Using Route Parameters
 - Adding a "Delete" Button
+- Adding custom button
+- Closing A modal Programmatically
+- Managing App-wide state With Context
+- Using Context From inside Components
+- Deleting & Update pensese
