@@ -17,14 +17,14 @@ type DeleteExpenseParams = {
 };
 type updateExpenseParams = {
   id: string;
-  data: updateExpense;
+  expenseData: updateExpense;
 };
 
 type ExpensesContextType = {
   expenses: Expense[];
   addExpense?: ({ decription, date, amount }: AddExpenseParams) => void;
   deleteExpense?: ({ id }: DeleteExpenseParams) => void;
-  updateExpense?: ({ id, data }: updateExpenseParams) => void;
+  updateExpense?: ({ id, expenseData }: updateExpenseParams) => void;
 };
 
 type ExpensesContextProviderProp = {
@@ -43,7 +43,7 @@ export const ExpensesContext = createContext<ExpensesContextType>({
   expenses: [],
   addExpense: ({ decription, date, amount }) => {},
   deleteExpense: ({id}) => {},
-  updateExpense: ({id,data}) => {},
+  updateExpense: ({id,expenseData}) => {},
 });
 
 const initialState: state = {
@@ -53,7 +53,8 @@ const initialState: state = {
 function expensesReducer(state:state,action:Action){
     switch (action.type) {
         case "ADD":
-            return {...state}
+        case "REMOVE":
+        case "UPDATE":
         default:
             return state
     }
@@ -63,6 +64,15 @@ function expensesReducer(state:state,action:Action){
 
 function ExpensesContextProvider({ children }: ExpensesContextProviderProp) {
   const [expenses,dispatch] = useReducer(expensesReducer,initialState);
+  function addExpense (expenseData:AddExpenseParams) {
+    dispatch({type:"ADD",payload:expenseData})
+  }
+  function deleteExpense(id:DeleteExpenseParams){
+    dispatch({type:"REMOVE",payload:id})
+  }
+  function updateExpense({id,expenseData}:updateExpenseParams){
+    dispatch({type:"UPDATE",payload:{id,expenseData}})
+  }
 
   return (<ExpensesContext.Provider value={expenses}>
     {children}
