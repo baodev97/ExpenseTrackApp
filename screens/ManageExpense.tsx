@@ -2,9 +2,10 @@ import { RootStackParamList } from "@/App";
 import Button from "@/components/UI/Button";
 import IconButton from "@/components/UI/IconButton";
 import { GlobalStyles } from "@/constants/styles";
+import { ExpensesContext } from "@/store/Expenses-context";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 type ManageExpensesNavigationProp = NativeStackNavigationProp<
@@ -19,10 +20,16 @@ type ManageExpensesProps = {
 };
 
 function ManageExpenses({ route, navigation }: ManageExpensesProps) {
+  const expensesCt = useContext(ExpensesContext)
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
-  function deleteExpenseHandler() {}
+  function deleteExpenseHandler() {
+    if(editedExpenseId){
+       expensesCt.deleteExpense({id:editedExpenseId})
+    }
+    navigation.goBack()
+  }
   function cancelHandler() {
     navigation.goBack();
   }
