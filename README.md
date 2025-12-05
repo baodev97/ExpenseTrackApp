@@ -27,3 +27,17 @@
 - Managing App-wide state With Context
 - Using Context From inside Components
 - Deleting & Update pensese
+---------------------------------------
+Handling User input 
+- Building a Custom input component
+- Creating an Overall Form
+- Configuring the Form Input Elements
+- Adding Style
+- Setting the Form Layout
+- Handling User Input in a generic Way
+- Managing Form State & Submission
+- Working with entered Data
+- Setting and using Default Value
+- Adding Validation
+- Providing Visual Validation Feedback
+- Adding Error Style 
