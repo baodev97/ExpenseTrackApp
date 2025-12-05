@@ -1,5 +1,5 @@
 import { Expense } from "@/components/ExpensesOutput/ExpensesOutput";
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useReducer } from "react";
 
 type updateExpense = {
   decription: string;
@@ -22,14 +22,22 @@ type updateExpenseParams = {
 
 type ExpensesContextType = {
   expenses: Expense[];
-  addExpense: ({ decription, date, amount }: AddExpenseParams) => void;
-  deleteExpense: ({ id }: DeleteExpenseParams) => void;
-  updateExpense: ({ id, data }: updateExpenseParams) => void;
+  addExpense?: ({ decription, date, amount }: AddExpenseParams) => void;
+  deleteExpense?: ({ id }: DeleteExpenseParams) => void;
+  updateExpense?: ({ id, data }: updateExpenseParams) => void;
 };
 
 type ExpensesContextProviderProp = {
   children: ReactNode;
 };
+
+type state = {
+    expenses:Expense[]
+}
+type Action =
+  | { type: "ADD"; payload: AddExpenseParams }
+  | { type: "REMOVE"; payload: { id: string } }
+  | { type: "UPDATE"; payload: updateExpenseParams };
 
 export const ExpensesContext = createContext<ExpensesContextType>({
   expenses: [],
@@ -38,13 +46,26 @@ export const ExpensesContext = createContext<ExpensesContextType>({
   updateExpense: ({id,data}) => {},
 });
 
+const initialState: state = {
+  expenses: [],
+};
+
+function expensesReducer(state:state,action:Action){
+    switch (action.type) {
+        case "ADD":
+            return {...state}
+        default:
+            return state
+    }
+}
+
 
 
 function ExpensesContextProvider({ children }: ExpensesContextProviderProp) {
-  
+  const [expenses,dispatch] = useReducer(expensesReducer,initialState);
 
-  return (<>
-  
-  </>)
+  return (<ExpensesContext.Provider value={expenses}>
+    {children}
+  </ExpensesContext.Provider>)
 }
 export default ExpensesContextProvider;
