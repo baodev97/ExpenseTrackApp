@@ -1,8 +1,10 @@
 import { RootStackParamList } from "@/App";
+import IconButton from "@/components/UI/IconButton";
+import { GlobalStyles } from "@/constants/styles";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useLayoutEffect } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 type ManageExpensesNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -18,6 +20,9 @@ type ManageExpensesProps = {
 function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
+
+  function deleteExpenseHandler() {}
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEditing ? "Edit Expense" : "Add Expense",
@@ -26,7 +31,16 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
 
   return (
     <View>
-      <Text>ManageExpenses</Text>
+      {isEditing && (
+        <View>
+          <IconButton
+            icon="trash"
+            color={GlobalStyles.colors.error500}
+            size={36}
+            onPress={deleteExpenseHandler}
+          />
+        </View>
+      )}
     </View>
   );
 }
