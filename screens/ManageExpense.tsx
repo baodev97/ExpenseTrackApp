@@ -23,12 +23,10 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   const isEditing = !!editedExpenseId;
 
   function deleteExpenseHandler() {}
-  function cancelHandler(){
-
+  function cancelHandler() {
+    navigation.goBack();
   }
-  function confirmHandler (){
-
-  }
+  function confirmHandler() {}
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -39,8 +37,12 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   return (
     <View style={styles.container}>
       <View style={styles.buttons}>
-        <Button onPress={cancelHandler} mode="flat" style={styles.button}>Cancel</Button>
-        <Button onPress={confirmHandler} style={styles.button}>{isEditing?"Update":"Add"}</Button>
+        <Button onPress={cancelHandler} mode="flat" style={styles.button}>
+          Cancel
+        </Button>
+        <Button onPress={confirmHandler} style={styles.button}>
+          {isEditing ? "Update" : "Add"}
+        </Button>
       </View>
       {isEditing && (
         <View style={styles.deleteContainer}>
@@ -58,25 +60,25 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
 export default ManageExpenses;
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    padding:24,
-    backgroundColor:GlobalStyles.colors.primary800
+  container: {
+    flex: 1,
+    padding: 24,
+    backgroundColor: GlobalStyles.colors.primary800,
   },
-  deleteContainer:{
-    marginTop:16,
-    padding:8,
-    borderTopWidth:2,
-    borderTopColor:GlobalStyles.colors.primary200,
-    alignItems:'center'
+  deleteContainer: {
+    marginTop: 16,
+    padding: 8,
+    borderTopWidth: 2,
+    borderTopColor: GlobalStyles.colors.primary200,
+    alignItems: "center",
   },
-  buttons:{
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center'
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  button:{
-    minWidth:120,
-    marginHorizontal:8
-  }
-})
+  button: {
+    minWidth: 120,
+    marginHorizontal: 8,
+  },
+});
