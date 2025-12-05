@@ -4,7 +4,7 @@ import { GlobalStyles } from "@/constants/styles";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useLayoutEffect } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type ManageExpensesNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -30,9 +30,9 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   });
 
   return (
-    <View>
+    <View style={styles.container}>
       {isEditing && (
-        <View>
+        <View style={styles.deleteContainer}>
           <IconButton
             icon="trash"
             color={GlobalStyles.colors.error500}
@@ -45,3 +45,18 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   );
 }
 export default ManageExpenses;
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    padding:24,
+    backgroundColor:GlobalStyles.colors.primary800
+  },
+  deleteContainer:{
+    marginTop:16,
+    padding:8,
+    borderTopWidth:2,
+    borderTopColor:GlobalStyles.colors.primary200,
+    alignItems:'center'
+  }
+})
