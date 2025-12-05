@@ -1,4 +1,5 @@
 import { RootStackParamList } from "@/App";
+import Button from "@/components/UI/Button";
 import IconButton from "@/components/UI/IconButton";
 import { GlobalStyles } from "@/constants/styles";
 import { RouteProp } from "@react-navigation/native";
@@ -22,6 +23,12 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   const isEditing = !!editedExpenseId;
 
   function deleteExpenseHandler() {}
+  function cancelHandler(){
+
+  }
+  function confirmHandler (){
+
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -31,6 +38,10 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.buttons}>
+        <Button onPress={cancelHandler} mode="flat" style={styles.button}>Cancel</Button>
+        <Button onPress={confirmHandler} style={styles.button}>{isEditing?"Update":"Add"}</Button>
+      </View>
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
@@ -58,5 +69,14 @@ const styles = StyleSheet.create({
     borderTopWidth:2,
     borderTopColor:GlobalStyles.colors.primary200,
     alignItems:'center'
+  },
+  buttons:{
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  button:{
+    minWidth:120,
+    marginHorizontal:8
   }
 })
