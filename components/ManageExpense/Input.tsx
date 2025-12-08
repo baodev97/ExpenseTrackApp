@@ -3,10 +3,11 @@ import { StyleSheet, Text, TextInput, TextInputProps, View } from "react-native"
 
 type InputProp = {
     label:string,
-    textInputConfig?:TextInputProps
+    textInputConfig?:TextInputProps,
+    style?:object
 }
 
-function Input({label,textInputConfig}:InputProp){
+function Input({label,textInputConfig,style}:InputProp){
 
     let inputStyles: any = [styles.input];
     if(textInputConfig && textInputConfig.multiline){
@@ -14,7 +15,7 @@ function Input({label,textInputConfig}:InputProp){
     }
 
     return (
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer,style]}>
             <Text style={styles.label}>{label}</Text>
             <TextInput style={inputStyles} {...textInputConfig}/>
         </View>
@@ -25,7 +26,7 @@ export default Input;
 const styles = StyleSheet.create({
     inputContainer:{
         marginHorizontal:4,
-        marginVertical:16
+        marginVertical:16,
     }, 
     label:{
         fontSize:12,
