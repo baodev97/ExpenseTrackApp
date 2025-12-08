@@ -1,4 +1,5 @@
 import { RootStackParamList } from "@/App";
+import ExpenseForm from "@/components/ManageExpense/ExpenseForm";
 import Button from "@/components/UI/Button";
 import IconButton from "@/components/UI/IconButton";
 import { GlobalStyles } from "@/constants/styles";
@@ -43,6 +44,7 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
 
   return (
     <View style={styles.container}>
+      <ExpenseForm/>
       <View style={styles.buttons}>
         <Button onPress={cancelHandler} mode="flat" style={styles.button}>
           Cancel
