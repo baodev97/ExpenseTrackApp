@@ -19,6 +19,13 @@ type ManageExpensesProps = {
   route: ManageExpensesRouteProp;
 };
 
+export type ExpenseData = {
+    amount:number,
+    date:Date,
+    description:string
+}
+
+
 function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   const expensesCt = useContext(ExpensesContext);
   const editedExpenseId = route.params?.expenseId;
@@ -33,7 +40,14 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   function cancelHandler() {
     navigation.goBack();
   }
-  function confirmHandler() {}
+  function confirmHandler(expenseData:ExpenseData) {
+    if(isEditing){
+      expensesCt.updateExpense({id:editedExpenseId,expenseData:expenseData})
+    }else{
+      expensesCt.addExpense(expenseData)
+    }
+    navigation.goBack()
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -45,7 +59,7 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
     <View style={styles.container}>
       <ExpenseForm
         onCancel={cancelHandler}
-        OnSubitHandler={confirmHandler}
+        onSubmit={confirmHandler}
         submitButtonLabel={isEditing ? "Update" : "Add"}
       />
 

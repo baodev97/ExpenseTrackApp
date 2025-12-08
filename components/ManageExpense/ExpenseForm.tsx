@@ -1,10 +1,11 @@
+import { ExpenseData } from "@/screens/ManageExpense";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Button from "../UI/Button";
 import Input from "./Input";
 
 
-type ExpenseForm = {
+type ExpenseFormState = {
     amount:string,
     date:string,
     description:string
@@ -13,23 +14,32 @@ type ExpenseForm = {
 type ExpenseFormProps = {
     submitButtonLabel:string,
     onCancel: ()=> void,
-    OnSubitHandler:()=>void
+    onSubmit:(expenseData:ExpenseData)=>void
 }
 
-function ExpenseForm({onCancel,OnSubitHandler,submitButtonLabel}:ExpenseFormProps) {
-    const [inputValues,setInputValues] = useState<ExpenseForm>({
+function ExpenseForm({onCancel,onSubmit,submitButtonLabel}:ExpenseFormProps) {
+    const [inputValues,setInputValues] = useState<ExpenseFormState>({
         amount:'',
         date:'',
         description:''
     })
 
-  function inputChangeHandler(inputIdentifier:keyof ExpenseForm,enterValue:string) {
+  function inputChangeHandler(inputIdentifier:keyof ExpenseFormState,enterValue:string) {
     setInputValues((curInputValues)=>{
         return {
             ...curInputValues,
             [inputIdentifier]:enterValue
         }
     })
+  }
+
+  function submitHandler(){
+    const expenseData = {
+        amount: +inputValues.amount,
+        date: new Date(inputValues.date),
+        description: inputValues.description
+    }
+    onSubmit(expenseData)
   }
 
   return (
@@ -71,7 +81,7 @@ function ExpenseForm({onCancel,OnSubitHandler,submitButtonLabel}:ExpenseFormProp
         <Button onPress={onCancel} mode="flat" style={styles.button}>
           Cancel
         </Button>
-        <Button onPress={OnSubitHandler} style={styles.button}>
+        <Button onPress={submitHandler} style={styles.button}>
           {submitButtonLabel}
         </Button>
       </View>
