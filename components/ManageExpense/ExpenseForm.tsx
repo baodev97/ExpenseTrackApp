@@ -1,6 +1,7 @@
 import { ExpenseData } from "@/screens/ManageExpense";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Expense } from "../ExpensesOutput/ExpensesOutput";
 import Button from "../UI/Button";
 import Input from "./Input";
 
@@ -14,14 +15,15 @@ type ExpenseFormState = {
 type ExpenseFormProps = {
     submitButtonLabel:string,
     onCancel: ()=> void,
-    onSubmit:(expenseData:ExpenseData)=>void
+    onSubmit:(expenseData:ExpenseData)=>void,
+    defaultValues:Expense|undefined
 }
 
-function ExpenseForm({onCancel,onSubmit,submitButtonLabel}:ExpenseFormProps) {
+function ExpenseForm({onCancel,onSubmit,submitButtonLabel,defaultValues}:ExpenseFormProps) {
     const [inputValues,setInputValues] = useState<ExpenseFormState>({
-        amount:'',
-        date:'',
-        description:''
+        amount:defaultValues? defaultValues.amount.toString():'',
+        date:defaultValues? defaultValues.date.toISOString().slice(0,10):'',
+        description:defaultValues? defaultValues.description:''
     })
 
   function inputChangeHandler(inputIdentifier:keyof ExpenseFormState,enterValue:string) {
