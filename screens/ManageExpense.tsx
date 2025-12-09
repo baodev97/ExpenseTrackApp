@@ -3,7 +3,7 @@ import ExpenseForm from "@/components/ManageExpense/ExpenseForm";
 import IconButton from "@/components/UI/IconButton";
 import { GlobalStyles } from "@/constants/styles";
 import { ExpensesContext } from "@/store/Expenses-context";
-import { storeExpense } from "@/util/http";
+import { deleteExpense, storeExpense, updateExpense } from "@/util/http";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useContext, useLayoutEffect } from "react";
@@ -34,10 +34,12 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
 
   const selectedExpense = expensesCt.expenses.find((expense)=> expense.id === editedExpenseId)
 
-  function deleteExpenseHandler() {
+  async function deleteExpenseHandler() {
     if (editedExpenseId) {
       expensesCt.deleteExpense({ id: editedExpenseId });
+      await deleteExpense(editedExpenseId)
     }
+
     navigation.goBack();
   }
   function cancelHandler() {
@@ -46,6 +48,7 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
   async function  confirmHandler(expenseData:ExpenseData) {
     if(isEditing){
       expensesCt.updateExpense({id:editedExpenseId,expenseData:expenseData})
+      await updateExpense(editedExpenseId,expenseData)
     }else{
       const id = await storeExpense(expenseData)
       expensesCt.addExpense({...expenseData,id:id})
