@@ -1,3 +1,4 @@
+import { GlobalStyles } from "@/constants/styles";
 import { ExpenseData } from "@/screens/ManageExpense";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -93,6 +94,7 @@ function ExpenseForm({
             value: inputs.amount.value,
           }}
           style={styles.rowInput}
+          invalid={!inputs.amount.isValid}
         />
         <Input
           label="Date"
@@ -104,6 +106,7 @@ function ExpenseForm({
             value: inputs.date.value,
           }}
           style={styles.rowInput}
+          invalid={!inputs.date.isValid}
         />
       </View>
 
@@ -117,8 +120,9 @@ function ExpenseForm({
             inputChangeHandler("description", enterValue),
           value: inputs.description.value,
         }}
+        invalid={!inputs.description.isValid}
       />
-      {formIsInvalid && <Text>Invalid input values - please check your entered data!</Text>}
+      {formIsInvalid && <Text style={styles.errorText}>Invalid input values - please check your entered data!</Text>}
       <View style={styles.buttons}>
         <Button onPress={onCancel} mode="flat" style={styles.button}>
           Cancel
@@ -159,4 +163,9 @@ const styles = StyleSheet.create({
     minWidth: 120,
     marginHorizontal: 8,
   },
+  errorText:{
+    textAlign:'center',
+    color:GlobalStyles.colors.error500,
+    margin:8
+  }
 });
