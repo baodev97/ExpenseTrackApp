@@ -9,10 +9,11 @@ function RecentExpenses() {
   const expensesCt = useContext(ExpensesContext)
   useEffect(()=>{
     async function getExpenses(){
-      await fetchExpense();
+      const expenses = await fetchExpense();
+      expensesCt.setExpenses(expenses)
     }
     getExpenses();
-  },[])
+  },[expensesCt])
   const recenntExpenses = expensesCt.expenses.filter((exp) => {
     const today = new Date();
     const date7DaysAgo = getDateMinusDays(today,7)
