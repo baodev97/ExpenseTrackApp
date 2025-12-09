@@ -1,12 +1,13 @@
 import { RootStackParamList } from "@/App";
 import ExpenseForm from "@/components/ManageExpense/ExpenseForm";
 import IconButton from "@/components/UI/IconButton";
+import LoadingOverlay from "@/components/UI/LoadingOverlay";
 import { GlobalStyles } from "@/constants/styles";
 import { ExpensesContext } from "@/store/Expenses-context";
 import { deleteExpense, storeExpense, updateExpense } from "@/util/http";
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 type ManageExpensesNavigationProp = NativeStackNavigationProp<
@@ -28,7 +29,7 @@ export type ExpenseData = {
 
 
 function ManageExpenses({ route, navigation }: ManageExpensesProps) {
-  
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const expensesCt = useContext(ExpensesContext);
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
@@ -47,6 +48,7 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
     navigation.goBack();
   }
   async function  confirmHandler(expenseData:ExpenseData) {
+    setIsSubmitting(true)
     if(isEditing){
       expensesCt.updateExpense({id:editedExpenseId,expenseData:expenseData})
       await updateExpense(editedExpenseId,expenseData)
@@ -62,6 +64,9 @@ function ManageExpenses({ route, navigation }: ManageExpensesProps) {
       title: isEditing ? "Edit Expense" : "Add Expense",
     });
   });
+  if (isSubmitting){
+    return <LoadingOverlay/>
+  };
 
   return (
     <View style={styles.container}>
