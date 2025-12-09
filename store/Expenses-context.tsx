@@ -56,7 +56,8 @@ function expensesReducer(state: state, action: Action) {
       const id = new Date().toString() + Math.random().toString();
       return [{ id: id, ...action.payload }, ...state];
     case "SET":
-        return action.payload;
+        const inverted = action.payload.reverse()
+        return inverted;
     case "REMOVE":
       return state.filter((exp) => exp.id !== action.payload.id);
     case "UPDATE":
