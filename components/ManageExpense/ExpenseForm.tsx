@@ -27,15 +27,15 @@ function ExpenseForm({
   const [inputs, setInputs] = useState<ExpenseFormState>({
     amount: {
       value: defaultValues ? defaultValues.amount.toString() : "",
-      isValid: !!defaultValues,
+      isValid: true,
     },
     date: {
       value: defaultValues ? defaultValues.date.toISOString().slice(0, 10) : "",
-      isValid: !!defaultValues,
+      isValid: true,
     },
     description: {
       value: defaultValues ? defaultValues.description : "",
-      isValid: !!defaultValues,
+      isValid: true,
     },
   });
 
