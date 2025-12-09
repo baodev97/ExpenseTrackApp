@@ -28,6 +28,7 @@ export type ExpenseData = {
 
 
 function ManageExpenses({ route, navigation }: ManageExpensesProps) {
+  
   const expensesCt = useContext(ExpensesContext);
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
