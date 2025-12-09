@@ -1,3 +1,43 @@
 # Welcome to your Expo app 👋 - DEV With Thien Bao 97 
 
-
+-The starting Setup
+    - UI/UX
+    - AllExpenses
+    - RecentExpenses
+    - ManageExpenses  (add expenses and update expenses)
+    - install react navigation
+- Adding Navigation & Configuring Navigation
+- Adding Global Colors & Editing Navigation Configuration
+- Creating Key App Components to display Expenses
+- Continuing Work on the Expense-related Components
+    - custom Expenses Summary
+    - custom Expenses List
+- Adding Dummy Expense Data
+- Outputting a List of Expenses
+- Improving App Layout & styling
+- Working on Expense List Items
+- Formatting Dates
+- Adding a Header Button & Making Expense Items Tappble
+- Navigation Programmatically Between Screens
+- Styling The Expense Manament Screens
+- Supporting Different Editing Modes & Using Route Parameters
+- Adding a "Delete" Button
+- Adding custom button
+- Closing A modal Programmatically
+- Managing App-wide state With Context
+- Using Context From inside Components
+- Deleting & Update pensese
+---------------------------------------
+Handling User input 
+- Building a Custom input component
+- Creating an Overall Form
+- Configuring the Form Input Elements
+- Adding Style
+- Setting the Form Layout
+- Handling User Input in a generic Way
+- Managing Form State & Submission
+- Working with entered Data
+- Setting and using Default Value
+- Adding Validation
+- Providing Visual Validation Feedback
+- Adding Error Style 
