@@ -41,3 +41,14 @@ Handling User input
 - Adding Validation
 - Providing Visual Validation Feedback
 - Adding Error Style 
+
+-------------------------
+Sending Http request
+- install axios
+- sending POST http request
+- fetching Backend Data
+- Transforming && Using Fetched Data
+- Using Response Data from POST Request
+- Updating & Deleting Backend Data
+- Managing the Loading State
+- Handling Request Errors
