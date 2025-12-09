@@ -2,8 +2,11 @@ import { ExpenseData } from "@/screens/ManageExpense";
 import axios from 'axios';
 
 const BACKEND_URL = 'https://expensetrackapi-default-rtdb.asia-southeast1.firebasedatabase.app'
-export function storeExpense(expenseData:ExpenseData){
-    axios.post( BACKEND_URL + '/expenses.json',expenseData)
+export async function storeExpense(expenseData:ExpenseData){
+
+    const response = await axios.post( BACKEND_URL + '/expenses.json',expenseData)
+    const id = response.data.name;
+    return id;
 }
 
 export async function fetchExpense(){

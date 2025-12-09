@@ -24,7 +24,7 @@ type updateExpenseParams = {
 type ExpensesContextType = {
   expenses: Expense[];
   setExpenses:(expenses:Expense[])=>void;
-  addExpense: ({ description, date, amount }: AddExpenseParams) => void;
+  addExpense: ( expense:Expense) => void;
   deleteExpense: ({ id }: DeleteExpenseParams) => void;
   updateExpense: ({ id, expenseData }: updateExpenseParams) => void;
 };
@@ -35,7 +35,7 @@ type ExpensesContextProviderProp = {
 
 type state = Expense[];
 type Action =
-  | { type: "ADD"; payload: AddExpenseParams }
+  | { type: "ADD"; payload: Expense }
   | { type: "REMOVE"; payload: { id: string } }
   | { type: "UPDATE"; payload: updateExpenseParams }
   | {type:"SET",payload:Expense[]}
@@ -43,7 +43,7 @@ type Action =
 export const ExpensesContext = createContext<ExpensesContextType>({
   expenses: [],
   setExpenses:(expenses)=>{},
-  addExpense: ({ description, date, amount }) => {},
+  addExpense: (expense) => {},
   deleteExpense: ({ id }) => {},
   updateExpense: ({ id, expenseData }) => {},
 });
@@ -53,8 +53,7 @@ const initialState: state = [];
 function expensesReducer(state: state, action: Action) {
   switch (action.type) {
     case "ADD":
-      const id = new Date().toString() + Math.random().toString();
-      return [{ id: id, ...action.payload }, ...state];
+      return [{...action.payload }, ...state];
     case "SET":
         const inverted = action.payload.reverse()
         return inverted;
@@ -73,7 +72,7 @@ function expensesReducer(state: state, action: Action) {
 
 function ExpensesContextProvider({ children }: ExpensesContextProviderProp) {
   const [expenses, dispatch] = useReducer(expensesReducer, initialState);
-  function addExpense(expenseData: AddExpenseParams) {
+  function addExpense(expenseData: Expense) {
     dispatch({ type: "ADD", payload: expenseData });
   }
   function deleteExpense(id: DeleteExpenseParams) {
